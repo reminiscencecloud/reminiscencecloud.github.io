@@ -1,0 +1,17 @@
+---
+const { locale = 'en' } = Astro.props;
+const zh = locale === 'zh';
+const steps = zh ? [
+ ['选择时间','在预约日历中选择合适的时间，仅填写预约所需的联系方式。'],
+ ['15分钟电话沟通','了解服务、费用与咨询方式，并感受我们是否适合一起工作。'],
+ ['准备首次正式咨询','如果决定开始，通过本诊所的安全系统完成所需初访资料，再安排正式咨询。']
+] : [
+ ['Choose a time','Select a time in the booking calendar and provide only the contact details needed to schedule.'],
+ ['Talk for 15 minutes','Ask about services, fees and the therapy process, and explore whether working together feels right.'],
+ ['Prepare for therapy','If we decide to begin, complete the necessary intake information through the practice’s secure system and arrange your first session.']
+];
+---
+<section class="booking-steps"><h2>{zh ? '从预约到首次咨询' : 'What happens next'}</h2><ol>{steps.map(([title,body])=><li><h3>{title}</h3><p>{body}</p></li>)}</ol></section>
+<style>
+.booking-steps{max-width:1120px;margin:0 auto;padding:40px 28px 80px}.booking-steps h2{font-size:2.5rem}.booking-steps ol{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;padding-left:24px}.booking-steps li{padding-left:6px}.booking-steps h3{font-size:1.7rem}.booking-steps p{color:var(--muted);line-height:1.8}@media(max-width:800px){.booking-steps ol{grid-template-columns:1fr;gap:12px}}
+</style>
