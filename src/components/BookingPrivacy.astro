@@ -1,0 +1,13 @@
+---
+interface Props { locale?: 'en' | 'zh' }
+const { locale = 'en' } = Astro.props;
+const zh = locale === 'zh';
+---
+<aside class="booking-privacy" aria-label={zh ? '预约隐私提示' : 'Booking privacy'}>
+  <p><strong>{zh ? '预约隐私提示' : 'Booking privacy'}</strong></p>
+  <p>{zh ? '请仅填写预约所需的联系方式。请勿在此提供医疗、心理健康、保险或其他敏感个人信息。所需的初访资料将另行通过本诊所的安全信息收集系统填写。' : 'Please provide only the contact details needed to schedule your consultation. Do not include medical, mental health, insurance, or other sensitive personal information here. Any necessary intake information will be collected separately through the practice’s secure intake system.'}</p>
+</aside>
+<style>
+.booking-privacy{margin-top:1.5rem;padding:1rem 1.2rem;border-left:2px solid var(--blue);background:rgba(255,255,255,.45);text-align:left;font-size:.9rem;line-height:1.7;color:var(--muted)}
+.booking-privacy p{margin:0}.booking-privacy p+p{margin-top:.4rem}
+</style>
