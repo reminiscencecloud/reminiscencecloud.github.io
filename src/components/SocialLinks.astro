@@ -1,0 +1,37 @@
+---
+import settings from '../content/settings.json';
+---
+<p class="social-links">
+  <a href={settings.instagramUrl}>
+    <svg viewBox="0 0 32 32" width="20" height="20" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="instagram-gradient" x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0" stop-color="#ffdc80" />
+          <stop offset=".3" stop-color="#fcaf45" />
+          <stop offset=".5" stop-color="#f77737" />
+          <stop offset=".7" stop-color="#e1306c" />
+          <stop offset="1" stop-color="#833ab4" />
+        </linearGradient>
+      </defs>
+      <rect width="32" height="32" rx="8" fill="url(#instagram-gradient)" />
+      <rect x="6" y="6" width="20" height="20" rx="6" fill="none" stroke="white" stroke-width="2.5" />
+      <circle cx="16" cy="16" r="5" fill="none" stroke="white" stroke-width="2.5" />
+      <circle cx="23" cy="9" r="1.6" fill="white" />
+    </svg>
+    <span>Instagram</span>
+  </a>
+  <span aria-hidden="true">·</span>
+  <a href={settings.linkedinUrl}>
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+      <rect width="24" height="24" rx="2" fill="#0077b5" />
+      <path fill="white" d="M6.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM5 9h3v11H5Zm5 0h3v1.5c.7-1.1 1.7-1.7 3.2-1.7 3 0 3.8 1.9 3.8 4.7V20h-3v-5.8c0-1.5-.3-2.7-1.8-2.7-1.6 0-2.2 1.1-2.2 2.8V20h-3Z" />
+    </svg>
+    <span>LinkedIn</span>
+  </a>
+</p>
+<style>
+  .social-links { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: .5rem; }
+  .social-links a { display: inline-flex; align-items: center; gap: .3rem; color: #285bb0; text-decoration: none; white-space: nowrap; }
+  .social-links a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .social-links svg { flex-shrink: 0; }
+</style>
