@@ -1,5 +1,5 @@
 ---
-import settings from '../../content/settings.json';
-const destination = settings.schedulingUrlZh;
+import Base from '../../layouts/Base.astro';
+import { withBase } from '../../paths.js';
 ---
-<!doctype html><html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><meta http-equiv="refresh" content={`0;url=${destination}`}><meta name="robots" content="noindex"><title>Book a Free Consultation</title></head><body><p><a href={destination}>打开免费15分钟咨询预约日历</a></p></body></html>
+<Base title="预约说明" description="预约说明" locale="zh" counterpart="/book/"><section class="page-hero"><h1>联系信息</h1><p>有关我的临床工作、服务或预约，请通过 Mind &amp; Body Garden Psychology 的官方渠道联系诊所。本网站不接受预约、咨询或付款。</p></section></Base>

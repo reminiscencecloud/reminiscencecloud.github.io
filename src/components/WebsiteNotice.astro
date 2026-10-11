@@ -1,0 +1,11 @@
+---
+const { locale = 'en' } = Astro.props;
+const zh = locale === 'zh';
+---
+<aside class="website-notice" aria-label={zh ? '网站用途与工作单位' : 'Website purpose and clinical role'}>
+<strong>{zh ? '个人专业介绍与心理健康教育网站' : 'Personal professional profile & mental health education'}</strong>
+<p>{zh ? 'Reminiscence Cloud 是 Sharon Miao 的个人网站，并非独立心理咨询执业机构。本网站不提供临床服务，不接受预约、咨询或付款。' : 'Reminiscence Cloud is Sharon Miao’s personal website, not a separate psychotherapy practice. This website does not provide clinical services or accept appointments, consultations, or payments.'}</p>
+<p>{zh ? 'Sharon Miao 目前在 Mind & Body Garden Psychology 担任 Psychotherapist（心理咨询师）。有关临床工作或预约，请通过该诊所的官方渠道联系诊所。' : 'Sharon Miao works as a Psychotherapist at Mind & Body Garden Psychology. For clinical inquiries or appointments, please contact the clinic through its official channels.'}</p>
+<p>{zh ? '本网站由个人维护，并非 Mind & Body Garden Psychology 的官方网站。教育内容不能替代个体化心理健康照护。' : 'This personally maintained website is not an official website of Mind & Body Garden Psychology. Educational content is not a substitute for individualized mental health care.'}</p>
+</aside>
+<style>.website-notice{max-width:1100px;margin:2rem auto;padding:1.5rem 2rem;background:#edf2f6;border-left:3px solid #657b86;border-radius:4px;line-height:1.7}.website-notice p{margin:.6rem 0 0;font-size:.95rem}@media(max-width:700px){.website-notice{margin:1rem;padding:1.2rem}}</style>

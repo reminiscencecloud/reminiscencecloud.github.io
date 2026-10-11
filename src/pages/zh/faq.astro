@@ -1,4 +1,5 @@
 ---
-import Base from '../../layouts/Base.astro'; import Cta from '../../components/Cta.astro'; import page from '../../content/pages/zh/faq.json'; import { withBase } from '../../paths.js';
+import Base from '../../layouts/Base.astro';
+import { withBase } from '../../paths.js';
 ---
-<Base title="心理咨询费用与常见问题" description="了解咨询费用、保险、咨询形式、英语与普通话服务，以及如何开始与苗秀云 Sharon Miao，LCSW 的心理咨询。" locale="zh" counterpart="/faq/"><section class="page-hero"><p class="kicker">常见问题</p><h1>{page.heading}</h1><p>{page.intro}</p></section><section class="faq">{page.groups.map(group=><section class="faq-group"><h2>{group.title}</h2>{group.items.map(x=>x.answer?<details><summary>{x.question}</summary><p>{x.answer}</p></details>:<div class="faq-question">{x.question}</div>)}</section>)}</section><section class="faq-help"><h2>还有问题吗？</h2><p>我很乐意回答这里没有涵盖的问题。联系我后，我会在 1–2 个工作日内回复。</p><a class="button" href={withBase('/zh/book/')}>预约免费咨询</a></section><Cta locale="zh"/></Base>
+<Base title="网站常见问题" description="网站常见问题" locale="zh" counterpart="/faq/"><section class="page-hero"><h1>网站常见问题</h1></section><section class="prose"><h2>这是独立诊所吗？</h2><p>不是。这是 Sharon Miao 的个人专业介绍与心理健康教育网站。</p><h2>在哪里工作？</h2><p>Psychotherapist · Mind &amp; Body Garden Psychology</p><h2>可以通过网站预约吗？</h2><p>本网站不接受预约、咨询或付款。有关临床服务、费用、保险与可预约时间，请联系诊所的官方渠道。</p></section></Base>

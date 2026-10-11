@@ -1,5 +1,4 @@
 ---
-import settings from '../../content/settings.json';
-const destination = settings.schedulingUrl;
+import { withBase } from '../../paths.js';
+return Astro.redirect(withBase('/contact/'), 301);
 ---
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><meta http-equiv="refresh" content={`0;url=${destination}`}><meta name="robots" content="noindex"><title>Book a Free Consultation</title></head><body><p><a href={destination}>Open the free 15-minute consultation calendar</a></p></body></html>
