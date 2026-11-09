@@ -1,5 +1,4 @@
 ---
-import Base from '../../layouts/Base.astro';
-import { withBase } from '../../paths.js';
+import HomePage from '../../components/HomePage.astro';
 ---
-<Base title="Sharon Miao｜个人专业介绍与心理健康教育" description="Sharon Miao｜个人专业介绍与心理健康教育" locale="zh" counterpart="/"><section class="hero"><div class="hero-copy"><p class="kicker">个人专业介绍与心理健康教育</p><h1>Sharon Miao</h1><p>Psychotherapist · Mind &amp; Body Garden Psychology</p><p>分享专业背景，以及关于心理健康、文化、关系与人生经历的思考。</p><a class="button" href={withBase('/zh/about/')}>了解我的背景</a></div></section><section class="intro-story"><div><h2>关于云间拾忆</h2><p>这里是个人介绍与教育性内容的空间，不是独立心理咨询机构，也不提供临床服务。</p><p><a href={withBase('/zh/blog/')}>阅读文章 →</a></p></div><img src={withBase('/images/portrait-960.webp')} alt="Sharon Miao" width="960" height="960" loading="lazy"></section></Base>
+<HomePage locale="zh" />

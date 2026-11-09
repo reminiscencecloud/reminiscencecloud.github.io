@@ -4,7 +4,7 @@ import SocialLinks from '../components/SocialLinks.astro';
 import WebsiteNotice from '../components/WebsiteNotice.astro';
 import SiteIdentity from '../components/SiteIdentity.astro';
 import { withBase, withoutBase } from '../paths.js';
-import '../styles/global.css'; import '../styles/content.css'; import '../styles/visual-match.css'; import '../styles/nav-fix.css'; import '../styles/faq-fix.css'; import '../styles/faq-help.css'; import '../styles/legal.css'; import '../styles/original-site.css';
+import '../styles/global.css'; import '../styles/content.css'; import '../styles/visual-match.css'; import '../styles/nav-fix.css'; import '../styles/faq-fix.css'; import '../styles/faq-help.css'; import '../styles/legal.css'; import '../styles/original-site.css'; import '../styles/refinement.css';
 interface Props { title: string; description?: string; locale?: 'en'|'zh'; counterpart?: string; robots?: string; }
 const { title, description: suppliedDescription, locale='en', counterpart, robots='index,follow' } = Astro.props;
 const path=withoutBase(Astro.url.pathname); const zh=locale==='zh'; const description=suppliedDescription||(zh?'Sharon Miao 的个人专业介绍与心理健康教育网站。':settings.tagline);
@@ -17,4 +17,21 @@ const alternate=new URL(withBase(languageHref),Astro.site);
 <header class="site-header"><a class="brand" href={withBase(zh?'/zh/':'/')} aria-label={zh?'Reminiscence Cloud 中文首页':'Reminiscence Cloud home'}><img class="original-logo" src={withBase('/images/logo-original.png')} alt="Reminiscence Cloud" width="310" height="72"></a><div class="header-actions"><a class="language" href={withBase(languageHref)} lang={zh?'en':'zh-CN'}>{zh?'EN':'中文'}</a><button class="menu" aria-expanded="false" aria-controls="nav"><span>{zh?'菜单':'Menu'}</span></button></div><nav id="nav" aria-label={zh?'主导航':'Primary'}><ul>{nav.map(([href,label])=><li><a href={withBase(href)} aria-current={path===href?'page':undefined}>{label}</a></li>)}<li class="nav-language"><a href={withBase(languageHref)} lang={zh?'en':'zh-CN'}>{zh?'English':'中文'}</a></li></ul></nav></header>
 <main id="main"><WebsiteNotice locale={locale}/><slot /></main>
 <footer><div><a class="brand footer-brand" href={withBase(zh?'/zh/':'/')}><img class="original-logo" src={withBase('/images/logo-original.png')} alt="Reminiscence Cloud" width="310" height="72"></a><p>{zh?'Sharon Miao 的个人专业介绍与心理健康教育网站。':'Sharon Miao’s personal professional profile and mental health education.'}</p></div><div><p><strong>{zh?'导航':'Navigate'}</strong></p><p>{nav.slice(0,5).map(([href,label],i)=><><a href={withBase(href)}>{label}</a>{i<4?' · ':''}</>)}</p></div><div><p><strong>Sharon Miao · Psychotherapist</strong></p><p>Mind &amp; Body Garden Psychology</p><p>{zh?'临床问题与预约请联系诊所的官方渠道。':'For clinical inquiries and appointments, contact the clinic through its official channels.'}</p><SocialLinks /></div><div class="footer-legal"><a href={withBase(zh?'/zh/privacy-policy/':'/privacy-policy/')}>{zh?'网站隐私政策':'Website Privacy Policy'}</a></div><p class="copyright">© {new Date().getFullYear()} Reminiscence Cloud · Sharon Miao</p></footer>
-<script is:inline>const b=document.querySelector('.menu'),n=document.querySelector('#nav');b?.addEventListener('click',()=>{const o=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!o));n?.classList.toggle('open',!o)});</script></body></html>
+<script is:inline>
+(() => {
+ const button = document.querySelector('.menu');
+ const nav = document.querySelector('#nav');
+ if (!button || !nav) return;
+ const mobile = window.matchMedia('(max-width: 1199px)');
+ const close = () => { button.setAttribute('aria-expanded', 'false'); nav.classList.remove('open'); nav.hidden = mobile.matches; };
+ button.dataset.ready = 'true';
+ close();
+ button.addEventListener('click', () => {
+   const open = button.getAttribute('aria-expanded') !== 'true';
+   button.setAttribute('aria-expanded', String(open)); nav.classList.toggle('open', open); nav.hidden = !open;
+ });
+ document.addEventListener('keydown', e => { if (e.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') { close(); button.focus(); } });
+ nav.addEventListener('click', e => { if (e.target.closest('a') && mobile.matches) close(); });
+ mobile.addEventListener('change', close);
+})();
+</script></body></html>

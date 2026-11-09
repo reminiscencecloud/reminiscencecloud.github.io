@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import { withBase } from '../paths.js';
+const { locale = 'en' } = Astro.props;
+const zh = locale === 'zh';
+const prefix = zh ? '/zh' : '';
+const posts = (await getCollection(zh ? 'postsZh' : 'postsEn', p => p.data.published)).sort((a,b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0,2);
+---
+<Base title={zh ? 'Sharon Miao｜个人专业介绍与心理健康教育' : 'Sharon Miao | Professional Profile & Mental Health Education'} description={zh ? '了解 Sharon Miao 的专业背景，阅读关于心理健康、文化、关系与人生经历的思考。个人教育网站，不提供临床服务。' : 'Explore Sharon Miao’s professional background and reflections on mental health, culture, relationships, and life experiences. A personal educational website.'} locale={locale} counterpart={zh ? '/' : '/zh/'}>
+<section class="profile-hero" aria-labelledby="home-title">
+  <div class="profile-copy">
+    <p class="kicker">{zh ? '个人专业介绍 · 心理健康教育' : 'Professional profile · Mental health education'}</p>
+    <h1 id="home-title">Sharon Miao</h1>
+    <p class="profile-role">Psychotherapist<br/><span>Mind &amp; Body Garden Psychology</span></p>
+    <p class="profile-intro">{zh ? '关于心理健康、文化、关系与人生经历的思考。也在这里，了解我的专业背景。' : 'Reflections on mental health, culture, relationships, and the experiences that shape us. A space to read, reflect, and get to know my background.'}</p>
+    <div class="profile-actions"><a class="button" href={withBase(`${prefix}/about/`)}>{zh ? '了解我的背景' : 'Explore my background'} <span aria-hidden="true">↗</span></a><a class="text-link" href={withBase(`${prefix}/blog/`)}>{zh ? '阅读文章' : 'Read the journal'} <span aria-hidden="true">→</span></a></div>
+  </div>
+  <figure class="profile-portrait"><img src={withBase('/images/portrait-960.webp')} srcset={`${withBase('/images/portrait-480.webp')} 480w, ${withBase('/images/portrait-960.webp')} 960w`} sizes="(max-width: 600px) 80vw, (max-width: 900px) 320px, 440px" width="960" height="960" alt={zh ? 'Sharon Miao 坐在海边' : 'Sharon Miao seated by the coast'} fetchpriority="high" decoding="async"/><figcaption>Reminiscence Cloud <span aria-hidden="true">·</span> 云间拾忆</figcaption></figure>
+</section>
+<section class="home-journal" aria-labelledby="journal-title">
+  <div class="journal-heading"><div><p class="kicker">{zh ? '文字与思考' : 'From the journal'}</p><h2 id="journal-title">{zh ? '留一点时间，阅读与思考。' : 'A little space for reflection.'}</h2></div><a class="text-link" href={withBase(`${prefix}/blog/`)}>{zh ? '浏览全部文章' : 'View all writing'} <span aria-hidden="true">→</span></a></div>
+  <div class="journal-grid">{posts.map(p => <article><p class="kicker">{p.id === 'emergency-resources' ? (zh ? '支持资源' : 'Support resources') : (zh ? '心理健康 · 阅读' : 'Mental health · Reading')}</p><h3><a href={withBase(`${prefix}/blog/${p.id}/`)}>{p.data.title}</a></h3><p>{p.data.summary}</p><a class="text-link" href={withBase(`${prefix}/blog/${p.id}/`)} aria-label={`${zh ? '阅读全文：' : 'Read: '}${p.data.title}`}>{zh ? '阅读全文' : 'Read article'} <span aria-hidden="true">↗</span></a></article>)}</div>
+</section>
+<section class="home-purpose"><h2>{zh ? '关于云间拾忆' : 'About Reminiscence Cloud'}</h2><p>{zh ? '这里是个人专业介绍与教育性写作的空间，并非独立心理咨询机构。有关临床工作或预约，请通过 Mind & Body Garden Psychology 的官方渠道联系诊所。' : 'A personal space for professional information and educational writing. For clinical inquiries and appointments, please contact Mind & Body Garden Psychology through its official channels.'}</p><a class="text-link" href={withBase(`${prefix}/contact/`)}>{zh ? '查看联系信息' : 'Contact information'} <span aria-hidden="true">→</span></a></section>
+</Base>

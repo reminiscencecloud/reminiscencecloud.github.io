@@ -1,5 +1,4 @@
 ---
-import Base from '../layouts/Base.astro';
-import { withBase } from '../paths.js';
+import HomePage from '../components/HomePage.astro';
 ---
-<Base title="Sharon Miao | Professional Profile & Mental Health Education" description="Sharon Miao | Professional Profile & Mental Health Education" counterpart="/zh/"><section class="hero"><div class="hero-copy"><p class="kicker">Professional profile & mental health education</p><h1>Sharon Miao</h1><p>Psychotherapist · Mind &amp; Body Garden Psychology</p><p>Professional background and reflections on mental health, culture, relationships, and life experiences.</p><a class="button" href={withBase('/about/')}>Explore my background</a></div></section><section class="intro-story"><div><h2>About Reminiscence Cloud</h2><p>A personal space for professional information and educational writing. It is not a separate psychotherapy practice and does not provide clinical services.</p><p><a href={withBase('/blog/')}>Read the journal →</a></p></div><img src={withBase('/images/portrait-960.webp')} alt="Sharon Miao" width="960" height="960" loading="lazy"></section></Base>
+<HomePage locale="en" />
